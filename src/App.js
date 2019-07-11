@@ -34,7 +34,7 @@ class App extends React.Component {
     return (
       <div className="App">
        <h1>Generar status de Tablero Trello</h1>
-       <h2>Una app para Vicky y Santi</h2>
+       <p>Exportá el tablero como JSON <code>(Mostrar menú → ... Más → Imprimir y exportar → Exportar en formato JSON)</code> y pegá aquí el código: </p>
   
        <textarea placeholder="Peguá aquí el JSON exportado de Trello" onChange={this.handleOnJsonPaste}></textarea>
        {lists && cards && <div className="results" tabIndex="1">
