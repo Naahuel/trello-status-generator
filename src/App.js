@@ -1,6 +1,7 @@
 import React from 'react';
 import {filter} from 'lodash';
 import './App.scss';
+import github from './svg/github.svg';
 
 class App extends React.Component {
 
@@ -56,7 +57,10 @@ class App extends React.Component {
           })} 
         </div>}
       <footer>
-        &copy; Nahuel José
+        <span>&copy; Nahuel José</span>
+        <span><a href="https://github.com/Naahuel/trello-status-generator" target="_blank"  rel="noopener noreferrer">
+          <img src={github} alt="View on GitHub" />
+        </a></span>
       </footer>
       </div>
     );
