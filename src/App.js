@@ -40,8 +40,8 @@ class App extends React.Component {
        {lists && cards && <div className="results" tabIndex="1">
           {lists.map(listItem => {
             let listCards = filter(cards, {idList: listItem.id});
-            return <div className="results__item">
-              <h1 key={listItem.id}>{listItem.name}</h1>
+            return <div key={listItem.id} className="results__item">
+              <h1>{listItem.name}</h1>
               {listCards.length ? <ul>
                 {listCards.map(cardItem => {
                   return <li key={cardItem.id}>
