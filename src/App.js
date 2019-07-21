@@ -9,13 +9,14 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      lang: 'es',
+      lang: props.i18n.language.split('-')[0],
       board: '',
       cards: [],
       lists: []
     }
 
     this.handleOnJsonPaste = this.handleOnJsonPaste.bind(this);
+    this.handleLangChange  = this.handleLangChange.bind(this);
   }
 
   handleOnJsonPaste(e){
@@ -31,12 +32,26 @@ class App extends React.Component {
     }
   }
 
+  handleLangChange(e){
+    this.setState({
+      lang: e.target.value
+    });
+
+    this.props.i18n.changeLanguage(e.target.value);
+  }
+
   render(){
     let {lists, cards} = this.state;
     let { t } = this.props;
 
     return (
       <div className="App">
+
+        <select className="lang-switch" value={this.state.lang} onChange={this.handleLangChange}>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+
         <h1>{t('appTitle')}</h1>
         <p>{t('appInstructions1')} <code>({t('appInstructions2')})</code> {t('appInstructions3')}: </p>
   
