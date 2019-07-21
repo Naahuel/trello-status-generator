@@ -33,15 +33,15 @@ class App extends React.Component {
 
     return (
       <div className="App">
-       <h1>Generar status de Tablero Trello</h1>
-       <p>Exportá el tablero como JSON <code>(Mostrar menú → ... Más → Imprimir y exportar → Exportar en formato JSON)</code> y pegá aquí el código: </p>
+        <h1>Generar status de Tablero Trello</h1>
+        <p>Exportá el tablero como JSON <code>(Mostrar menú → ... Más → Imprimir y exportar → Exportar en formato JSON)</code> y pegá aquí el código: </p>
   
-       <textarea placeholder="Peguá aquí el JSON exportado de Trello" onChange={this.handleOnJsonPaste}></textarea>
-       {lists && cards && <div className="results" tabIndex="1">
+        <textarea placeholder="Peguá aquí el JSON exportado de Trello" onChange={this.handleOnJsonPaste}></textarea>
+        {lists && cards && <div className="results" tabIndex="1">
           {lists.map(listItem => {
             let listCards = filter(cards, {idList: listItem.id});
-            return <div className="results__item">
-              <h1 key={listItem.id}>{listItem.name}</h1>
+            return <div key={listItem.id} className="results__item">
+              <h1>{listItem.name}</h1>
               {listCards.length ? <ul>
                 {listCards.map(cardItem => {
                   return <li key={cardItem.id}>
