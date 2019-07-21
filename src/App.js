@@ -1,13 +1,15 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
 import {filter} from 'lodash';
 import './App.scss';
 import github from './svg/github.svg';
 
 class App extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
+      lang: 'es',
       board: '',
       cards: [],
       lists: []
@@ -31,13 +33,14 @@ class App extends React.Component {
 
   render(){
     let {lists, cards} = this.state;
+    let { t } = this.props;
 
     return (
       <div className="App">
-        <h1>Generar status de Tablero Trello</h1>
-        <p>Exportá el tablero como JSON <code>(Mostrar menú → ... Más → Imprimir y exportar → Exportar en formato JSON)</code> y pegá aquí el código: </p>
+        <h1>{t('appTitle')}</h1>
+        <p>{t('appInstructions1')} <code>({t('appInstructions2')})</code> {t('appInstructions3')}: </p>
   
-        <textarea placeholder="Peguá aquí el JSON exportado de Trello" onChange={this.handleOnJsonPaste}></textarea>
+        <textarea placeholder={t('textareaPlaceholder')} onChange={this.handleOnJsonPaste}></textarea>
 
         {lists && cards && <div className="results" tabIndex="1">
           <h1>{this.state.board.name}</h1>
@@ -69,4 +72,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withTranslation()(App);
