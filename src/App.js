@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 import {filter} from 'lodash';
 import './App.scss';
 import github from './svg/github.svg';
+import { LangSwitcher } from './components/LangSwitcher';
 
 class App extends React.Component {
 
@@ -32,12 +33,12 @@ class App extends React.Component {
     }
   }
 
-  handleLangChange(e){
+  handleLangChange(value){
     this.setState({
-      lang: e.target.value
+      lang: value
     });
 
-    this.props.i18n.changeLanguage(e.target.value);
+    this.props.i18n.changeLanguage(value);
   }
 
   render(){
@@ -47,10 +48,7 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <select className="lang-switch" value={this.state.lang} onChange={this.handleLangChange}>
-          <option value="es">Español</option>
-          <option value="en">English</option>
-        </select>
+        <LangSwitcher currentLang={this.state.lang} onLangChange={this.handleLangChange} />
 
         <h1>{t('appTitle')}</h1>
         <p>{t('appInstructions1')} <code>({t('appInstructions2')})</code> {t('appInstructions3')}: </p>
