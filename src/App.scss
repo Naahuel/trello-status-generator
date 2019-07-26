@@ -84,6 +84,22 @@ textarea{
     padding: .2em .5em;
     border-radius: 10px;
   }
+
+  .results__item-member-list{
+    & > span:first-child{
+      font-weight: bold
+    }
+  }
+
+  .results__item-member{
+    font-style: italic;
+    &:after{
+      content: ', '
+    }
+    &:last-child:after{
+      content: none;
+    }
+  }
 }
 
 @media screen and (max-width: 600px){

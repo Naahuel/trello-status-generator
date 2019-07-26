@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import {filter} from 'lodash';
+import {filter, find} from 'lodash';
 import './App.scss';
 import github from './svg/github.svg';
 import { LangSwitcher } from './components/LangSwitcher';
@@ -13,19 +13,21 @@ class App extends React.Component {
       lang: props.i18n.language.split('-')[0],
       board: '',
       cards: [],
-      lists: []
+      lists: [],
+      members: []
     }
 
     this.handleOnJsonPaste = this.handleOnJsonPaste.bind(this);
     this.handleLangChange  = this.handleLangChange.bind(this);
+    this.getMember  = this.getMember.bind(this);
   }
 
   handleOnJsonPaste(e){
     try {
 
       let board = JSON.parse(e.target.value);
-      let { cards, lists } = board
-      this.setState({ board, cards, lists });
+      let { cards, lists, members } = board
+      this.setState({ board, cards, lists, members });
 
     } catch (error) {
       console.error(error)
@@ -41,6 +43,10 @@ class App extends React.Component {
     this.props.i18n.changeLanguage(value);
   }
 
+  getMember(memberId){
+    return find(this.state.members, {id: memberId}).fullName;
+  }
+
   render(){
     let {lists, cards} = this.state;
     let { t } = this.props;
@@ -52,7 +58,7 @@ class App extends React.Component {
 
         <h1>{t('appTitle')}</h1>
         <p>{t('appInstructions1')} <code>({t('appInstructions2')})</code> {t('appInstructions3')}: </p>
-  
+
         <textarea placeholder={t('textareaPlaceholder')} onChange={this.handleOnJsonPaste}></textarea>
 
         {lists && cards && <div className="results" tabIndex="1">
@@ -68,11 +74,19 @@ class App extends React.Component {
                       return <span className="results__item-label" key={labelItem.id} style={{backgroundColor: labelItem.color}}>{labelItem.name}</span>
                     })}
                     {cardItem.name}
+                    {cardItem.idMembers.length ? <div className="results__item-member-list">
+                      <span>{t('inCharge')} </span>
+                      {cardItem.idMembers.map(member => {
+                        return (
+                          <span className="results__item-member" key={member}>{this.getMember(member)}</span>
+                        )
+                      })}
+                    </div> : null}
                   </li>
                 })}
               </ul> : <p><em>Sin items</em></p>}
             </div>
-          })} 
+          })}
         </div>}
       <footer>
         <span>&copy; Nahuel José</span>

@@ -15,7 +15,8 @@ i18n
         appInstructions1: "Exportá el tablero como JSON",
         appInstructions2: "Mostrar menú → ... Más → Imprimir y exportar → Exportar en formato JSON",
         appInstructions3: "y pegá aquí el código",
-        textareaPlaceholder: "Peguá aquí el JSON exportado de Trello"
+        textareaPlaceholder: "Peguá aquí el JSON exportado de Trello",
+        inCharge: "A cargo de:"
       }
     },
     en: {
@@ -24,7 +25,8 @@ i18n
         appInstructions1: "Export your Trello board as JSON",
         appInstructions2: "Show menu → ... More → Print And Export → Exportar JSON",
         appInstructions3: "then paste the code here",
-        textareaPlaceholder: "Paste the Trello JSON code here"
+        textareaPlaceholder: "Paste the Trello JSON code here",
+        inCharge: "Owner:"
       }
     },
   },
