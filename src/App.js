@@ -64,11 +64,17 @@ class App extends React.Component {
         {lists && cards && <div className="results" tabIndex="1">
           <h1>{this.state.board.name}</h1>
           {lists.map(listItem => {
+            if (listItem.closed) {
+              return null;
+            }
             let listCards = filter(cards, {idList: listItem.id});
             return <div key={listItem.id} className="results__item">
               <h2>{listItem.name}</h2>
               {listCards.length ? <ul>
                 {listCards.map(cardItem => {
+                  if (cardItem.closed) {
+                    return null;
+                  }
                   return <li key={cardItem.id}>
                     {cardItem.labels.map(labelItem => {
                       return <span className="results__item-label" key={labelItem.id} style={{backgroundColor: labelItem.color}}>{labelItem.name}</span>
